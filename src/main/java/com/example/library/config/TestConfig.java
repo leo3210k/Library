@@ -9,7 +9,14 @@ import org.springframework.context.annotation.Profile;
 
 import java.util.Arrays;
 
-public class TestConfig  {
+@Configuration
+@Profile("test")
+public class TestConfig implements CommandLineRunner {
 
 
+
+    @Override
+    public void run(String... args) throws Exception {
+
+    }
 }
