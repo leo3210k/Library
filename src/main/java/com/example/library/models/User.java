@@ -22,5 +22,13 @@ public class User implements Serializable {
     public User() {
     }
 
+    public User(Long enrollment, String name, String email, String address, String phone) {
+        this.enrollment = enrollment;
+        this.name = name;
+        this.email = email;
+        this.address = address;
+        this.phone = phone;
+    }
+
 
 }
