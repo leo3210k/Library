@@ -16,5 +16,8 @@ public class UserService {
 
     public List<User> findAll() { return repository.findAll(); }
 
-
+    public User findByEnrollment(Long enrollment) {
+        Optional<User> obj = repository.findById(enrollment);
+        return obj.get();
+    }
 }
