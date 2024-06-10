@@ -23,4 +23,8 @@ public class UserController {
         return service.findAll();
     }
 
+    @GetMapping(value = "/{enrollment}")
+    User findById(@PathVariable Long enrollment) {
+        return service.findByEnrollment(enrollment);
+    }
 }
