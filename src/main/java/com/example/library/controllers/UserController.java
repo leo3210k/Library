@@ -21,11 +21,14 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<User>> findAll() {
         List<User> users = service.findAll();
+
         return ResponseEntity.ok().body(users);
     }
 
     @GetMapping(value = "/{enrollment}")
-    User findByEnrollment(@PathVariable Long enrollment) {
-        return service.findByEnrollment(enrollment);
+    ResponseEntity<User> findByEnrollment(@PathVariable Long enrollment) {
+        User user = service.findByEnrollment(enrollment);
+
+        return ResponseEntity.ok().body(user);
     }
 }
