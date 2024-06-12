@@ -26,5 +26,29 @@ public class Loan implements Serializable {
         this.devolution = devolution;
     }
 
+    public Long getCode() {
+        return code;
+    }
+
+    public void setCode(Long code) {
+        this.code = code;
+    }
+
+    public Date getWithdraw() {
+        return withdraw;
+    }
+
+    public void setWithdraw(Date withdraw) {
+        this.withdraw = withdraw;
+    }
+
+    public Date getDevolution() {
+        return devolution;
+    }
+
+    public void setDevolution(Date devolution) {
+        this.devolution = devolution;
+    }
+
 
 }
