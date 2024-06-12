@@ -5,6 +5,6 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Book {
+public class Book implements Serializable {
 
 }
