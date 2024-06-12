@@ -8,7 +8,9 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_loan")
-public class Loan {
+public class Loan implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long code;
