@@ -9,7 +9,8 @@ import java.util.Objects;
 @Table(name = "tb_session")
 public class Session implements Serializable {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long code;
     private String description;
     private String location;
