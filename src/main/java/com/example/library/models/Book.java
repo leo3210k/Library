@@ -16,5 +16,14 @@ public class Book implements Serializable {
     private String title;
     private String author;
 
+    public Book() {
+    }
+
+    public Book(Long code, String title, String author) {
+        this.code = code;
+        this.title = title;
+        this.author = author;
+    }
+
 
 }
