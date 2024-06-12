@@ -8,6 +8,10 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_loan")
-public class Loan implements Serializable {
+public class Loan {
+    private Long code;
+    private Date withdraw;
+    private Date devolution;
+
 
 }
