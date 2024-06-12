@@ -8,6 +8,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "tb_session")
 public class Session implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +16,14 @@ public class Session implements Serializable {
     private String description;
     private String location;
 
+    public Session() {
+    }
 
+    public Session(Long code, String description, String location) {
+        this.code = code;
+        this.description = description;
+        this.location = location;
+    }
 
 
 
