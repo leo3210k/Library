@@ -10,6 +10,11 @@ import java.util.Objects;
 public class Session implements Serializable {
 
 
+    private Long code;
+    private String description;
+    private String location;
+
+
 
 
 
