@@ -49,5 +49,16 @@ public class Session implements Serializable {
         this.location = location;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Session session = (Session) o;
+        return Objects.equals(code, session.code);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(code);
+    }
 }
