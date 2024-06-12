@@ -50,5 +50,16 @@ public class Loan implements Serializable {
         this.devolution = devolution;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Loan loan = (Loan) o;
+        return Objects.equals(code, loan.code);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(code);
+    }
 }
