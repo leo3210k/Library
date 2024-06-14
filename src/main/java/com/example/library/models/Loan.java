@@ -20,6 +20,12 @@ public class Loan implements Serializable {
     @JoinColumn(name="user_code")
     private User user;
 
+    @ManyToMany
+    @JoinTable(name = "tb_loan_book",
+            joinColumns = @JoinColumn(name = "loan_code"),
+            inverseJoinColumns = @JoinColumn(name = "book_code"))
+    private List<Book> books = new ArrayList<>();
+
     public Loan() {
     }
 
