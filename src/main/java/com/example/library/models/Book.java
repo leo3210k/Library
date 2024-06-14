@@ -19,13 +19,18 @@ public class Book implements Serializable {
     private String title;
     private String author;
 
+    @ManyToOne
+    @JoinColumn(name="session_code")
+    private Session session;
+
     public Book() {
     }
 
-    public Book(Long code, String title, String author) {
+    public Book(Long code, String title, String author, Session session) {
         this.code = code;
         this.title = title;
         this.author = author;
+        this.session = session;
     }
 
     public Long getCode() {
