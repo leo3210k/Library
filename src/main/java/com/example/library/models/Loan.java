@@ -54,6 +54,10 @@ public class Loan implements Serializable {
         this.devolution = devolution;
     }
 
+    public User getUser() {
+        return user;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
