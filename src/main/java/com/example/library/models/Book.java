@@ -1,13 +1,16 @@
-package com.example.library.models.Impl;
+package com.example.library.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tb_book")
-public class BookImpl implements Serializable {
+public class Book implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -16,10 +19,10 @@ public class BookImpl implements Serializable {
     private String title;
     private String author;
 
-    public BookImpl() {
+    public Book() {
     }
 
-    public BookImpl(Long code, String title, String author) {
+    public Book(Long code, String title, String author) {
         this.code = code;
         this.title = title;
         this.author = author;
@@ -53,7 +56,7 @@ public class BookImpl implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BookImpl book = (BookImpl) o;
+        Book book = (Book) o;
         return Objects.equals(code, book.code);
     }
 
