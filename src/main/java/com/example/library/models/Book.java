@@ -57,6 +57,10 @@ public class Book implements Serializable {
         this.author = author;
     }
 
+    public Session getSession() {
+        return session;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
