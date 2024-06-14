@@ -64,6 +64,10 @@ public class Loan implements Serializable {
         return user;
     }
 
+    public List<Book> getBooks() {
+        return books;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
