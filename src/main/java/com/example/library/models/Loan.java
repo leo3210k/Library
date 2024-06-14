@@ -1,14 +1,13 @@
-package com.example.library.models.Impl;
+package com.example.library.models;
 
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_loan")
-public class LoanImpl implements Serializable {
+public class Loan implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -19,12 +18,12 @@ public class LoanImpl implements Serializable {
 
     @ManyToOne
     @JoinColumn(name="user_code")
-    private UserImpl user;
+    private User user;
 
-    public LoanImpl() {
+    public Loan() {
     }
 
-    public LoanImpl(Long code, Date withdraw, Date devolution, UserImpl user) {
+    public Loan(Long code, Date withdraw, Date devolution, User user) {
         this.code = code;
         this.withdraw = withdraw;
         this.devolution = devolution;
@@ -59,7 +58,7 @@ public class LoanImpl implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LoanImpl loan = (LoanImpl) o;
+        Loan loan = (Loan) o;
         return Objects.equals(code, loan.code);
     }
 
