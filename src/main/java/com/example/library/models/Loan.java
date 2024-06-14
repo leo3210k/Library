@@ -1,4 +1,4 @@
-package com.example.library.models;
+package com.example.library.models.Impl;
 
 import jakarta.persistence.*;
 
@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_loan")
-public class Loan implements Serializable {
+public class LoanImpl implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -17,13 +17,18 @@ public class Loan implements Serializable {
     private Date withdraw;
     private Date devolution;
 
-    public Loan() {
+    @ManyToOne
+    @JoinColumn(name="user_code")
+    private UserImpl user;
+
+    public LoanImpl() {
     }
 
-    public Loan(Long code, Date withdraw, Date devolution) {
+    public LoanImpl(Long code, Date withdraw, Date devolution, UserImpl user) {
         this.code = code;
         this.withdraw = withdraw;
         this.devolution = devolution;
+        this.user = user;
     }
 
     public Long getCode() {
@@ -54,7 +59,7 @@ public class Loan implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Loan loan = (Loan) o;
+        LoanImpl loan = (LoanImpl) o;
         return Objects.equals(code, loan.code);
     }
 

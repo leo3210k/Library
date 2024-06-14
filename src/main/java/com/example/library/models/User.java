@@ -1,8 +1,11 @@
 package com.example.library.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -18,6 +21,10 @@ public class User implements Serializable {
     private String email;
     private String address;
     private String phone;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Loan> loans;
 
     public User() {
     }
@@ -68,6 +75,10 @@ public class User implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public List<Loan> getLoans() {
+        return loans;
     }
 
     @Override

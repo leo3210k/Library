@@ -1,4 +1,4 @@
-package com.example.library.models;
+package com.example.library.models.Impl;
 
 import jakarta.persistence.*;
 
@@ -7,7 +7,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_book")
-public class Book implements Serializable {
+public class BookImpl implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -16,10 +16,10 @@ public class Book implements Serializable {
     private String title;
     private String author;
 
-    public Book() {
+    public BookImpl() {
     }
 
-    public Book(Long code, String title, String author) {
+    public BookImpl(Long code, String title, String author) {
         this.code = code;
         this.title = title;
         this.author = author;
@@ -53,7 +53,7 @@ public class Book implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Book book = (Book) o;
+        BookImpl book = (BookImpl) o;
         return Objects.equals(code, book.code);
     }
 
