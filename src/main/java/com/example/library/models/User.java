@@ -24,7 +24,7 @@ public class User implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
-    private List<Loan> loans;
+    private List<Loan> loans = new ArrayList<>();
 
     public User() {
     }
