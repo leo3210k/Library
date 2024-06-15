@@ -1,8 +1,11 @@
 package com.example.library.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +18,10 @@ public class Session implements Serializable {
     private Long code;
     private String description;
     private String location;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "session")
+    private List<Book> books = new ArrayList<>();
 
     public Session() {
     }
