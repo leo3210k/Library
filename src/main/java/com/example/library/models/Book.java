@@ -23,6 +23,10 @@ public class Book implements Serializable {
     @JoinColumn(name="session_code")
     private Session session;
 
+    @JsonIgnore
+    @ManyToMany(mappedBy = "books")
+    private List<Loan> loans = new ArrayList<>();
+
     public Book() {
     }
 
@@ -59,6 +63,10 @@ public class Book implements Serializable {
 
     public Session getSession() {
         return session;
+    }
+
+    public List<Loan> getLoans() {
+        return loans;
     }
 
     @Override
