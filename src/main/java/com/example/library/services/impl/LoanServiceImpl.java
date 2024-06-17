@@ -21,4 +21,8 @@ public class LoanServiceImpl implements LoanService {
         Optional<Loan> obj = repository.findById(code);
         return obj.get();
     }
+
+    public Loan insertLoan(Loan loan) {
+        return repository.save(loan);
+    }
 }
