@@ -23,4 +23,8 @@ public class UserServiceImpl implements UserService {
         Optional<User> obj = repository.findById(enrollment);
         return obj.orElseThrow(() -> new ResourceNotFoundException(enrollment));
     }
+
+    public User insertUser(User user) {
+        return repository.save(user);
+    }
 }
