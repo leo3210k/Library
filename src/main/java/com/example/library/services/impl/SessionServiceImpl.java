@@ -21,4 +21,8 @@ public class SessionServiceImpl implements SessionService {
         Optional<Session> obj = repository.findById(code);
         return obj.get();
     }
+
+    public Session insertSession(Session session) {
+        return repository.save(session);
+    }
 }
