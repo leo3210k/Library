@@ -27,4 +27,25 @@ public class UserServiceImpl implements UserService {
     public User insertUser(User user) {
         return repository.save(user);
     }
+
+    public User update(Long enrollment, User user) {
+        try {
+            User entity = repository.getReferenceById(enrollment);
+            updateData(entity, user);
+            return repository.save(entity);
+        } catch(EntityNotFoundException e) {
+//            e.printStackTrace();
+            throw new ResourceNotFoundException(enrollment);
+        }
+
+    }
+
+    private void updateData(User entity, User user) {
+        entity.setName(user.getName());
+        entity.setEmail(user.getEmail());
+        entity.setPhone(user.getPhone());
+        entity.setAddress(user.getAddress());
+    }
+
+
 }
