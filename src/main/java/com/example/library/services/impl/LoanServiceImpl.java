@@ -1,7 +1,6 @@
-package com.example.library.services.Impl;
+package com.example.library.services.impl;
 
 import com.example.library.models.Loan;
-import com.example.library.models.User;
 import com.example.library.repositories.LoanRepository;
 import com.example.library.services.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +20,5 @@ public class LoanServiceImpl implements LoanService {
     public Loan findByCode(Long code) {
         Optional<Loan> obj = repository.findById(code);
         return obj.get();
-    }
-
-    public Loan insertLoan(Loan loan) {
-        return repository.save(loan);
     }
 }
