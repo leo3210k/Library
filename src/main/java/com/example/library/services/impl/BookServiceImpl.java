@@ -22,4 +22,7 @@ public class BookServiceImpl implements BookService {
         return obj.get();
     }
 
+    public Book insertBook(Book book) {
+        return repository.save(book);
+    }
 }
