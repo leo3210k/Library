@@ -1,7 +1,6 @@
-package com.example.library.services.Impl;
+package com.example.library.services.impl;
 
 import com.example.library.models.Session;
-import com.example.library.models.User;
 import com.example.library.repositories.SessionRepository;
 import com.example.library.services.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +20,5 @@ public class SessionServiceImpl implements SessionService {
     public Session findByCode(Long code) {
         Optional<Session> obj = repository.findById(code);
         return obj.get();
-    }
-
-    public Session insertSession(Session session) {
-        return repository.save(session);
     }
 }
