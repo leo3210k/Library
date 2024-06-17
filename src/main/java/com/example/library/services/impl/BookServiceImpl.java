@@ -1,7 +1,6 @@
-package com.example.library.services.Impl;
+package com.example.library.services.impl;
 
 import com.example.library.models.Book;
-import com.example.library.models.Loan;
 import com.example.library.repositories.BookRepository;
 import com.example.library.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,4 @@ public class BookServiceImpl implements BookService {
         return obj.get();
     }
 
-    public Book insertBook(Book book) {
-        return repository.save(book);
-    }
 }
