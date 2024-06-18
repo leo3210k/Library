@@ -38,4 +38,11 @@ public class UserController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getEnrollment()).toUri();
         return ResponseEntity.created(uri).body(user);
     }
+
+    @PutMapping(value = "/{enrollment}")
+    ResponseEntity<User> update(@PathVariable Long enrollment, @RequestBody User user) {
+        user = service.update(enrollment, user);
+
+        return ResponseEntity.ok().body(user);
+    }
 }
