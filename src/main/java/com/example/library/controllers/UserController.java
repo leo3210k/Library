@@ -41,7 +41,7 @@ public class UserController {
 
     @PutMapping(value = "/{enrollment}")
     ResponseEntity<User> update(@PathVariable Long enrollment, @RequestBody User user) {
-        user = service.update(enrollment, user);
+        user = service.updateUser(enrollment, user);
 
         return ResponseEntity.ok().body(user);
     }

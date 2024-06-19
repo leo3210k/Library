@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
         return repository.save(user);
     }
 
-    public User update(Long enrollment, User user) {
+    public User updateUser(Long enrollment, User user) {
         try {
             User entity = repository.getReferenceById(enrollment);
             updateData(entity, user);

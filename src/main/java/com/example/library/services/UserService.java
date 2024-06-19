@@ -11,5 +11,5 @@ public interface UserService {
 
     User insertUser(User user);
 
-    User update(Long enrollment, User user);
+    User updateUser(Long enrollment, User user);
 }
