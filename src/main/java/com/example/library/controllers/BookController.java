@@ -1,34 +1,41 @@
 package com.example.library.controllers;
 
-import com.example.library.models.User;
-import com.example.library.services.Impl.UserServiceImpl;
+import com.example.library.models.Book;
+import com.example.library.services.impl.BookServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/books")
 public class BookController {
 
     @Autowired
-    private UserServiceImpl service;
+    private BookServiceImpl service;
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll() {
-        List<User> users = service.findAll();
+    public ResponseEntity<List<Book>> findAll() {
+        List<Book> books = service.findAll();
 
-        return ResponseEntity.ok().body(users);
+        return ResponseEntity.ok().body(books);
     }
 
-    @GetMapping(value = "/{enrollment}")
-    ResponseEntity<User> findByEnrollment(@PathVariable Long enrollment) {
-        User user = service.findByEnrollment(enrollment);
+    @GetMapping(value = "/{code}")
+    ResponseEntity<Book> findByEnrollment(@PathVariable Long code) {
+        Book book = service.findByCode(code);
 
-        return ResponseEntity.ok().body(user);
+        return ResponseEntity.ok().body(book);
+    }
+
+    @PostMapping
+    public ResponseEntity<Book>  insert(@RequestBody Book book) {
+        book = service.insertBook(book);
+
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(book.getCode()).toUri();
+        return ResponseEntity.created(uri).body(book);
     }
 }
