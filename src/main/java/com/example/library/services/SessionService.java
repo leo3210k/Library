@@ -1,5 +1,6 @@
 package com.example.library.services;
 
+import com.example.library.models.Book;
 import com.example.library.models.Session;
 import com.example.library.models.User;
 
@@ -11,4 +12,6 @@ public interface SessionService {
     Session findByCode(Long code);
 
     Session insertSession(Session session);
+
+    Session updateSession(Long code, Session session);
 }
