@@ -40,19 +40,25 @@ public class TestConfig implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(u1, u2));
 
-        Loan l1 = new Loan(null, Date.from(Instant.now()), Date.from(Instant.now()));
-        Loan l2 = new Loan(null, Date.from(Instant.now()), Date.from(Instant.now()));
+        Loan l1 = new Loan(null, Date.from(Instant.now()), Date.from(Instant.now()), u1);
+        Loan l2 = new Loan(null, Date.from(Instant.now()), Date.from(Instant.now()), u2);
 
         loanRepository.saveAll(Arrays.asList(l1, l2));
 
-        Book b1 = new Book(null, "Crônicas de Nárnia", "C.S.Lewis");
-        Book b2 = new Book(null, "Harry Potter: O prisioneiro de Azkaban", "J.K.Rowlling");
+        Session s1 = new Session(null, "Terror/Mistério", "C1");
+        Session s2 = new Session(null, "Fantasia", "B4");
+
+        sessionRepository.saveAll(Arrays.asList(s1, s2));
+
+        Book b1 = new Book(null, "O Iluminado", "Stephen King", s1);
+        Book b2 = new Book(null, "Harry Potter: O prisioneiro de Azkaban", "J.K.Rowlling", s2);
 
         bookRepository.saveAll(Arrays.asList(b1, b2));
 
-        Session s1 = new Session(null, "teste", "Teresina");
-        Session s2 = new Session(null, "teste", "Timon");
+        l1.getBooks().add(b2);
+        l2.getBooks().add(b1);
+        l2.getBooks().add(b2);
 
-        sessionRepository.saveAll(Arrays.asList(s1, s2));
+        loanRepository.saveAll(Arrays.asList(l1, l2));
     }
 }
