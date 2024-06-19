@@ -1,34 +1,41 @@
 package com.example.library.controllers;
 
-import com.example.library.models.User;
-import com.example.library.services.Impl.UserServiceImpl;
+import com.example.library.models.Loan;
+import com.example.library.services.impl.LoanServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/loans")
 public class LoanController {
 
     @Autowired
-    private UserServiceImpl service;
+    private LoanServiceImpl service;
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll() {
-        List<User> users = service.findAll();
+    public ResponseEntity<List<Loan>> findAll() {
+        List<Loan> loans = service.findAll();
 
-        return ResponseEntity.ok().body(users);
+        return ResponseEntity.ok().body(loans);
     }
 
-    @GetMapping(value = "/{enrollment}")
-    ResponseEntity<User> findByEnrollment(@PathVariable Long enrollment) {
-        User user = service.findByEnrollment(enrollment);
+    @GetMapping(value = "/{code}")
+    ResponseEntity<Loan> findByEnrollment(@PathVariable Long code) {
+        Loan loan = service.findByCode(code);
 
-        return ResponseEntity.ok().body(user);
+        return ResponseEntity.ok().body(loan);
+    }
+
+    @PostMapping
+    public ResponseEntity<Loan>  insert(@RequestBody Loan loan) {
+        loan = service.insertLoan(loan);
+
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(loan.getCode()).toUri();
+        return ResponseEntity.created(uri).body(loan);
     }
 }
