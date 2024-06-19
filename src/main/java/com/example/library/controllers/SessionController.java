@@ -1,34 +1,41 @@
 package com.example.library.controllers;
 
-import com.example.library.models.User;
-import com.example.library.services.Impl.UserServiceImpl;
+import com.example.library.models.Session;
+import com.example.library.services.impl.SessionServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/sessions")
 public class SessionController {
 
     @Autowired
-    private UserServiceImpl service;
+    private SessionServiceImpl service;
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll() {
-        List<User> users = service.findAll();
+    public ResponseEntity<List<Session>> findAll() {
+        List<Session> sessions = service.findAll();
 
-        return ResponseEntity.ok().body(users);
+        return ResponseEntity.ok().body(sessions);
     }
 
-    @GetMapping(value = "/{enrollment}")
-    ResponseEntity<User> findByEnrollment(@PathVariable Long enrollment) {
-        User user = service.findByEnrollment(enrollment);
+    @GetMapping(value = "/{code}")
+    ResponseEntity<Session> findByEnrollment(@PathVariable Long code) {
+        Session session = service.findByCode(code);
 
-        return ResponseEntity.ok().body(user);
+        return ResponseEntity.ok().body(session);
+    }
+
+    @PostMapping
+    public ResponseEntity<Session>  insert(@RequestBody Session session) {
+        session = service.insertSession(session);
+
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(session.getCode()).toUri();
+        return ResponseEntity.created(uri).body(session);
     }
 }
