@@ -1,5 +1,6 @@
 package com.example.library.services;
 
+import com.example.library.models.Book;
 import com.example.library.models.Loan;
 import com.example.library.models.Session;
 
@@ -11,4 +12,6 @@ public interface LoanService {
     Loan findByCode(Long code);
 
     Loan insertLoan(Loan loan);
+
+    Loan updateLoan(Long code, Loan loan);
 }
