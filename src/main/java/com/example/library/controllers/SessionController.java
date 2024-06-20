@@ -46,4 +46,11 @@ public class SessionController {
 
         return ResponseEntity.ok().body(session);
     }
+
+    @DeleteMapping(value = "/{code}")
+    public ResponseEntity<Void> delete(@PathVariable Long code) {
+        service.deleteSession(code);
+
+        return ResponseEntity.noContent().build();
+    }
 }
