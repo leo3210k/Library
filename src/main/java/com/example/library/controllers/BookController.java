@@ -46,4 +46,11 @@ public class BookController {
 
         return ResponseEntity.ok().body(book);
     }
+
+    @DeleteMapping(value = "/{code}")
+    public ResponseEntity<Void> delete(@PathVariable Long code) {
+        service.deleteBook(code);
+
+        return ResponseEntity.noContent().build();
+    }
 }
