@@ -39,4 +39,11 @@ public class BookController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{code}").buildAndExpand(book.getCode()).toUri();
         return ResponseEntity.created(uri).body(book);
     }
+
+    @PutMapping(value = "/{code}")
+    ResponseEntity<Book> update(@PathVariable Long code, @RequestBody Book book) {
+        book = service.updateBook(code, book);
+
+        return ResponseEntity.ok().body(book);
+    }
 }
