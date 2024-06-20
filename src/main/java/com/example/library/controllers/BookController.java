@@ -1,6 +1,7 @@
 package com.example.library.controllers;
 
 import com.example.library.models.Book;
+import com.example.library.models.User;
 import com.example.library.services.impl.BookServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +36,7 @@ public class BookController {
     public ResponseEntity<Book>  insert(@RequestBody Book book) {
         book = service.insertBook(book);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(book.getCode()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{code}").buildAndExpand(book.getCode()).toUri();
         return ResponseEntity.created(uri).body(book);
     }
 }
