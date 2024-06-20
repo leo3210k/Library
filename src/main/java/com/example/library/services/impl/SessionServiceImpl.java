@@ -29,4 +29,21 @@ public class SessionServiceImpl implements SessionService {
     public Session insertSession(Session session) {
         return repository.save(session);
     }
+
+    public Session updateSession(Long code, Session session) {
+        try {
+            Session entity = repository.getReferenceById(code);
+            updateData(entity, session);
+            return repository.save(entity);
+        } catch(EntityNotFoundException e) {
+//            e.printStackTrace();
+            throw new ResourceNotFoundException(code);
+        }
+    }
+
+    private void updateData(Session entity, Session loan) {
+        entity.setCode(loan.getCode());
+        entity.setDescription(loan.getDescription());
+        entity.setLocation(loan.getLocation());
+    }
 }
