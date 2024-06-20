@@ -39,4 +39,11 @@ public class LoanController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{code}").buildAndExpand(loan.getCode()).toUri();
         return ResponseEntity.created(uri).body(loan);
     }
+
+    @PutMapping(value = "/{code}")
+    ResponseEntity<Loan> update(@PathVariable Long code, @RequestBody Loan loan) {
+        loan = service.updateLoan(code, loan);
+
+        return ResponseEntity.ok().body(loan);
+    }
 }
