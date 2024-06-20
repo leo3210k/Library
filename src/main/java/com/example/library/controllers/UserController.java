@@ -45,4 +45,14 @@ public class UserController {
 
         return ResponseEntity.ok().body(user);
     }
+
+    // Se o usuário tiver pedidos, será dado código 500 Internal Server Error
+    // para não perder a integridade do banco de dados
+    @DeleteMapping(value = "/{enrollment}")
+    public ResponseEntity<Void> delete(@PathVariable Long enrollment) {
+        service.deleteUser(enrollment);
+
+        // Código 204 = Resposta que não possui conteúdo
+        return ResponseEntity.noContent().build();
+    }
 }
