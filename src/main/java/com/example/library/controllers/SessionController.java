@@ -1,6 +1,7 @@
 package com.example.library.controllers;
 
 import com.example.library.models.Session;
+import com.example.library.models.User;
 import com.example.library.services.impl.SessionServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +36,7 @@ public class SessionController {
     public ResponseEntity<Session>  insert(@RequestBody Session session) {
         session = service.insertSession(session);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(session.getCode()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{code}").buildAndExpand(session.getCode()).toUri();
         return ResponseEntity.created(uri).body(session);
     }
 }
