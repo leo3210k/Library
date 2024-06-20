@@ -42,6 +42,13 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    private void updateData(User entity, User user) {
+        entity.setName(user.getName());
+        entity.setEmail(user.getEmail());
+        entity.setPhone(user.getPhone());
+        entity.setAddress(user.getAddress());
+    }
+
     public void deleteUser(Long enrollment) {
         try {
             repository.deleteById(enrollment);
@@ -52,12 +59,5 @@ public class UserServiceImpl implements UserService {
 //          e.printStackTrace();
             throw new DatabaseException(e.getMessage());
         }
-    }
-
-    private void updateData(User entity, User user) {
-        entity.setName(user.getName());
-        entity.setEmail(user.getEmail());
-        entity.setPhone(user.getPhone());
-        entity.setAddress(user.getAddress());
     }
 }
