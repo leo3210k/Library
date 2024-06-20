@@ -14,4 +14,6 @@ public interface SessionService {
     Session insertSession(Session session);
 
     Session updateSession(Long code, Session session);
+
+    void deleteSession(Long code);
 }
