@@ -3,9 +3,12 @@ package com.example.library.services.impl;
 import com.example.library.models.User;
 import com.example.library.repositories.UserRepository;
 import com.example.library.services.UserService;
+import com.example.library.services.exceptions.DatabaseException;
 import com.example.library.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,7 +40,18 @@ public class UserServiceImpl implements UserService {
 //            e.printStackTrace();
             throw new ResourceNotFoundException(enrollment);
         }
+    }
 
+    public void deleteUser(Long enrollment) {
+        try {
+            repository.deleteById(enrollment);
+        } catch(EmptyResultDataAccessException e) {
+//          e.printStackTrace();
+            throw new ResourceNotFoundException(enrollment);
+        } catch(DataIntegrityViolationException e) {
+//          e.printStackTrace();
+            throw new DatabaseException(e.getMessage());
+        }
     }
 
     private void updateData(User entity, User user) {
@@ -46,6 +60,4 @@ public class UserServiceImpl implements UserService {
         entity.setPhone(user.getPhone());
         entity.setAddress(user.getAddress());
     }
-
-
 }
