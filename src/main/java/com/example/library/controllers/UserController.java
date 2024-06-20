@@ -35,7 +35,7 @@ public class UserController {
     public ResponseEntity<User> insert(@RequestBody User user) {
         user = service.insertUser(user);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getEnrollment()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{enrollment}").buildAndExpand(user.getEnrollment()).toUri();
         return ResponseEntity.created(uri).body(user);
     }
 
