@@ -1,8 +1,12 @@
 package com.example.library.services.impl;
 
+import com.example.library.models.Book;
 import com.example.library.models.Session;
+import com.example.library.models.User;
 import com.example.library.repositories.SessionRepository;
 import com.example.library.services.SessionService;
+import com.example.library.services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +23,7 @@ public class SessionServiceImpl implements SessionService {
 
     public Session findByCode(Long code) {
         Optional<Session> obj = repository.findById(code);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(code));
     }
 
     public Session insertSession(Session session) {
