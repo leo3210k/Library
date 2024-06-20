@@ -39,4 +39,11 @@ public class SessionController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{code}").buildAndExpand(session.getCode()).toUri();
         return ResponseEntity.created(uri).body(session);
     }
+
+    @PutMapping(value = "/{code}")
+    ResponseEntity<Session> update(@PathVariable Long code, @RequestBody Session session) {
+        session = service.updateSession(code, session);
+
+        return ResponseEntity.ok().body(session);
+    }
 }
