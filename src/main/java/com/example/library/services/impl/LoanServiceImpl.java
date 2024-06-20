@@ -29,4 +29,21 @@ public class LoanServiceImpl implements LoanService {
     public Loan insertLoan(Loan loan) {
         return repository.save(loan);
     }
+
+    public Loan updateLoan(Long code, Loan loan) {
+        try {
+            Loan entity = repository.getReferenceById(code);
+            updateData(entity, loan);
+            return repository.save(entity);
+        } catch(EntityNotFoundException e) {
+//            e.printStackTrace();
+            throw new ResourceNotFoundException(code);
+        }
+    }
+
+    private void updateData(Loan entity, Loan loan) {
+        entity.setCode(loan.getCode());
+        entity.setWithdraw(loan.getWithdraw());
+        entity.setDevolution(loan.getDevolution());
+    }
 }
