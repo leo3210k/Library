@@ -29,4 +29,21 @@ public class BookServiceImpl implements BookService {
     public Book insertBook(Book book) {
         return repository.save(book);
     }
+
+    public Book updateBook(Long code, Book book) {
+        try {
+            Book entity = repository.getReferenceById(code);
+            updateData(entity, book);
+            return repository.save(entity);
+        } catch(EntityNotFoundException e) {
+//            e.printStackTrace();
+            throw new ResourceNotFoundException(code);
+        }
+    }
+
+    private void updateData(Book entity, Book loan) {
+        entity.setCode(loan.getCode());
+        entity.setAuthor(loan.getAuthor());
+        entity.setTitle(loan.getTitle());
+    }
 }
