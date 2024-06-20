@@ -5,9 +5,12 @@ import com.example.library.models.Loan;
 import com.example.library.models.Session;
 import com.example.library.repositories.BookRepository;
 import com.example.library.services.BookService;
+import com.example.library.services.exceptions.DatabaseException;
 import com.example.library.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,5 +48,17 @@ public class BookServiceImpl implements BookService {
         entity.setCode(loan.getCode());
         entity.setAuthor(loan.getAuthor());
         entity.setTitle(loan.getTitle());
+    }
+
+    public void deleteBook(Long code) {
+        try {
+            repository.deleteById(code);
+        } catch(EmptyResultDataAccessException e) {
+//          e.printStackTrace();
+            throw new ResourceNotFoundException(code);
+        } catch(DataIntegrityViolationException e) {
+//          e.printStackTrace();
+            throw new DatabaseException(e.getMessage());
+        }
     }
 }
