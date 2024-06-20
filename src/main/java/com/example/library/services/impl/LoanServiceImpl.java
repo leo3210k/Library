@@ -1,8 +1,12 @@
 package com.example.library.services.impl;
 
 import com.example.library.models.Loan;
+import com.example.library.models.Session;
+import com.example.library.models.User;
 import com.example.library.repositories.LoanRepository;
 import com.example.library.services.LoanService;
+import com.example.library.services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +23,7 @@ public class LoanServiceImpl implements LoanService {
 
     public Loan findByCode(Long code) {
         Optional<Loan> obj = repository.findById(code);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(code));
     }
 
     public Loan insertLoan(Loan loan) {
