@@ -1,6 +1,7 @@
 package com.example.library.controllers;
 
 import com.example.library.models.Loan;
+import com.example.library.models.User;
 import com.example.library.services.impl.LoanServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +36,7 @@ public class LoanController {
     public ResponseEntity<Loan>  insert(@RequestBody Loan loan) {
         loan = service.insertLoan(loan);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(loan.getCode()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{code}").buildAndExpand(loan.getCode()).toUri();
         return ResponseEntity.created(uri).body(loan);
     }
 }
